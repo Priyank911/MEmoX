@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevPilot Authentication Helper</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #0066b8;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            margin-top: 2rem;
+            color: #444;
+        }
+        .method {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        ol {
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.75rem;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        .tip {
+            background-color: #e1f5fe;
+            border-left: 4px solid #03a9f4;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>DevPilot Authentication Helper</h1>
+    
+    <p>This guide will help you complete the authentication process for DevPilot if the automatic redirect to VS Code didn't work.</p>
+    
+    <div class="warning">
+        <strong>Note:</strong> You should only need this page if VS Code didn't automatically open after GitHub authorization.
+    </div>
+    
+    <div class="method">
+        <h2>Method 1: Manual Code Entry</h2>
+        <ol>
+            <li>Copy the authorization code from your browser's address bar. It appears after <code>code=</code> and before <code>&state=</code> or <code>&</code></li>
+            <li>Return to VS Code</li>
+            <li>Click on the "DevPilot: Sign In" button in the status bar</li>
+            <li>Select "Enter Auth Code"</li>
+            <li>Paste the authorization code and press Enter</li>
+        </ol>
+    </div>
+    
+    <div class="method">
+        <h2>Method 2: Using a Personal Access Token</h2>
+        <ol>
+            <li>Create a GitHub Personal Access Token at <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></li>
+            <li>Ensure the token has the <code>user:email</code> scope</li>
+            <li>In VS Code, click on the "DevPilot: Sign In" button in the status bar</li>
+            <li>Select "Enter GitHub Token"</li>
+            <li>Paste your Personal Access Token and press Enter</li>
+        </ol>
+    </div>
+    
+    <div class="tip">
+        <strong>Tip:</strong> If you're experiencing persistent issues with the OAuth flow, you can try:
+        <ul>
+            <li>Restarting VS Code</li>
+            <li>Checking that the protocol handler is registered on your system</li>
+            <li>Verifying that your GitHub OAuth app has the correct callback URL: <code>vscode://memox/callback</code></li>
+        </ul>
+    </div>
+    
+    <p>For additional help, please refer to the <a href="https://github.com/yourusername/devpilot/blob/main/docs/authentication.md">DevPilot Authentication Documentation</a>.</p>
+</body>
+</html>

@@ -1,0 +1,11 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+.DS_Store
+*.log
+.env
+dist/
+coverage/ 
+.env.example
+# Ignore test coverage reports
