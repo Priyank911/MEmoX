@@ -43,8 +43,7 @@ export class AuthService {
         
         // Validate the OAuth configuration on startup
         this.validateOAuthConfig();
-    }
-      // Validate GitHub OAuth configuration
+    }      // Validate GitHub OAuth configuration
     private validateOAuthConfig(): void {
         const clientId = this.getClientId();
         const clientSecret = this.getClientSecret();
@@ -54,11 +53,7 @@ export class AuthService {
             return;
         }
         
-        // Additional validation if needed
-        if (clientId === 'Ov23limgWcXCUA0lTShe' && clientSecret.startsWith('a1f84c79')) {
-            console.warn('MEmoX: Using example GitHub OAuth credentials. Please configure your own OAuth app.');
-        }
-        
+        // No hardcoded credential check - more secure for marketplace deployment
         console.log('MEmoX: GitHub OAuth configuration validated. Client ID available:', !!clientId);
     }
 
@@ -99,18 +94,20 @@ export class AuthService {
             this.currentState = newState;
             this._stateChanged.fire(newState);
         }
-    }
-
-    // Get GitHub client ID from settings or environment
+    }    // Get GitHub client ID from settings or environment
     public getClientId(): string {
-        const config = vscode.workspace.getConfiguration('memox');
-        return config.get<string>('githubClientId') || process.env.GITHUB_CLIENT_ID || '';
+        // Prioritize environment variables first, then fall back to settings
+        return process.env.GITHUB_CLIENT_ID || 
+               vscode.workspace.getConfiguration('memox').get<string>('githubClientId') || 
+               '';
     }
 
     // Get GitHub client secret from settings or environment
     private getClientSecret(): string {
-        const config = vscode.workspace.getConfiguration('memox');
-        return config.get<string>('githubClientSecret') || process.env.GITHUB_CLIENT_SECRET || '';
+        // Prioritize environment variables first, then fall back to settings
+        return process.env.GITHUB_CLIENT_SECRET || 
+               vscode.workspace.getConfiguration('memox').get<string>('githubClientSecret') || 
+               '';
     }
 
     // Get stored auth token

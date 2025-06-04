@@ -61,9 +61,9 @@ let repoIndex: RepoIndex = {};
 
 let ragManager: RAGManager;
 
-// Use the provided API key and endpoint for cloud fallback
-const OPENAI_API_KEY = 'sk-sBl5ipZbLl6B4vYdV09MGNEqbZ33QPjBSVfucxwqkpnlH7Jt';
-const OPENAI_API_URL = 'https://api.chatanywhere.tech/v1/chat/completions';
+// Get API key and endpoint from environment variables with fallbacks
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
+const OPENAI_API_URL = process.env.OPENAI_API_URL || 'https://api.openai.com/v1/chat/completions';
 
 let localLLM: any = null;
 let localLLMLoading: Promise<any> | null = null;
@@ -675,6 +675,14 @@ async function handleUserMessage(message: { content: string; timestamp: number; 
 
 async function handleCloudMessage(message: { content: string; timestamp: number }) {
     const apiKey = OPENAI_API_KEY;
+    
+    // Check if API key is available
+    if (!apiKey) {
+        console.error('MEmoX: OpenAI API key not found. Please add it to .env file or settings.');
+        return { 
+            content: 'Cloud AI service is not configured. Please add your OpenAI API key to the .env file or settings.'
+        };
+    }
     
     try {
         // Get repository overview (simplified and more focused)

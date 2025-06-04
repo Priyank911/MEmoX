@@ -1,8 +1,8 @@
-# DevPilot Authentication Implementation
+# MEmoX Authentication Implementation
 
 ## Overview
 
-DevPilot implements a secure, user-friendly authentication flow using GitHub OAuth, with an alternative direct token entry method. This document explains the implementation details, best practices used, and security considerations.
+MEmoX implements a secure, user-friendly authentication flow using GitHub OAuth, with an alternative direct token entry method. This document explains the implementation details, best practices used, and security considerations.
 
 ## Architecture
 
@@ -17,14 +17,14 @@ The authentication system consists of several key components:
 
 ### GitHub OAuth Flow
 
-1. User clicks the "DevPilot: Sign In" button in the VS Code status bar
+1. User clicks the "MEmoX: Sign In" button in the VS Code status bar
 2. The AuthWebview displays authentication options
 3. When "Sign in with GitHub" is selected:
    - A secure state parameter is generated and stored
    - GitHub OAuth URL is constructed with client ID and redirect URI
    - The system browser opens with the GitHub authorization page
 4. User approves access permissions on GitHub
-5. GitHub redirects to `vscode://devpilot/callback?code=xxx&state=yyy`
+5. GitHub redirects to `vscode://MEmoX/callback?code=xxx&state=yyy`
 6. VS Code intercepts this URI via the registered URI handler
 7. The auth code and state parameter are validated
 8. The code is exchanged for an access token
@@ -34,7 +34,7 @@ The authentication system consists of several key components:
 
 ### Direct Token Entry Flow
 
-1. User clicks the "DevPilot: Sign In" button in the status bar
+1. User clicks the "MEmoX: Sign In" button in the status bar
 2. The AuthWebview displays authentication options
 3. When "Enter GitHub Token" is selected:
    - User is prompted for their personal access token
@@ -59,13 +59,13 @@ The authentication system consists of several key components:
 
 ## Configuration
 
-Organizations deploying DevPilot should:
+Organizations deploying MEmoX should:
 
 1. Register a GitHub OAuth application
 2. Configure client ID and secret in:
    - `.env` file (development)
    - VS Code settings (end users)
-3. Ensure the callback URL is exactly `vscode://devpilot/callback`
+3. Ensure the callback URL is exactly `vscode://MEmoX/callback`
 
 ## Best Practices Implemented
 
@@ -83,4 +83,4 @@ The authentication system is designed to be extensible:
 - Token refresh mechanism could be implemented
 - Scoped access could be implemented for different features
 
-This implementation provides a robust foundation for secure user authentication in the DevPilot extension.
+This implementation provides a robust foundation for secure user authentication in the MEmoX extension.

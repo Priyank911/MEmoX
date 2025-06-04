@@ -105,6 +105,22 @@ Customize MEmoX through VS Code settings:
 | `memox.githubAuth` | GitHub authentication | OAuth credentials |
 | `memox.indexDepth` | Code indexing depth | `standard`, `deep` |
 
+### Environment Variables
+
+For sensitive credentials, MEmoX supports environment variables via a `.env` file:
+
+```
+# GitHub OAuth credentials
+GITHUB_CLIENT_ID=your_github_client_id_here
+GITHUB_CLIENT_SECRET=your_github_client_secret_here
+
+# OpenAI API credentials for cloud capabilities
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_URL=https://api.openai.com/v1/chat/completions
+```
+
+Copy `.env.example` to `.env` and add your credentials. This file is automatically ignored by Git for security.
+
 ## 🔐 Authentication
 
 MEmoX provides a streamlined authentication experience:
